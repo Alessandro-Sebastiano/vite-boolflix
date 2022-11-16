@@ -1,11 +1,41 @@
 <template>
   <div class="container">
+    <NavBar @call="search()" />
+    <SearchResult />
   </div>
 </template>
 
 <script>
-export default {
+import { store } from './store';
+import axios from 'axios';
+import NavBar from './components/NavBar.vue'
+import SearchResult from './components/SearchResult.vue';
 
+export default {
+  components: {
+    NavBar,
+    SearchResult,
+  },
+
+  data() {
+    return {
+      store,
+    }
+  },
+
+  methods: {
+    search() {
+      const apiCallUrl = this.store.baseApiUrl + 'search/multi' + this.store.apiKey + '&language=it-IT' + '&query=' + this.store.searchInput;
+      axios.get(apiCallUrl).then((response) => {
+        this.store.films = { ...response.data.results };
+        console.log(this.store.films);
+      })
+    }
+  },
+
+  created() {
+    // this.search()
+  }
 }
 </script>
 
