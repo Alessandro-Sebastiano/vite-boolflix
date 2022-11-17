@@ -1,7 +1,8 @@
 <template>
-    <div class="result" v-if="store.films.length !== 0">
+    <div class="result">
         <CardComponent v-for="(card, index) in store.films" :title="card.title" :originalTitle="card.original_title"
-            :lang="card.original_language" :vote="card.vote_average" :img="card.poster_path" :tName="card.name" />
+            :lang="card.original_language" :vote="card.vote_average" :img="card.poster_path" :tName="card.name"
+            :overview="card.overview" />
     </div>
 </template>
 
@@ -27,10 +28,10 @@ export default {
 
 <style lang="scss" scoped>
 .result {
-    margin-top: 68px;
+    position: relative;
+    top: 68px;
     display: flex;
     flex-wrap: wrap;
     padding: 24px;
-    position: relative;
 }
 </style>

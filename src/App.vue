@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <NavBar @call="search()" />
-    <SearchResult />
+    <SearchResult v-if="store.films.length !== 0" />
   </div>
 </template>
 
@@ -40,6 +40,7 @@ export default {
 <style lang="scss" scoped>
 .container {
   width: 100%;
-  height: 100vh;
+  height: 100%;
+  overflow: auto;
 }
 </style>

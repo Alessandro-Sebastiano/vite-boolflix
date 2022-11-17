@@ -8,9 +8,12 @@
         <div class="card-info">
             <h3>{{ (title) ? title : tName }}</h3>
             <h5 v-if="originalTitle !== title">{{ originalTitle }}</h5>
-            <span v-if="formatVote"><i class="fa-solid fa-star" v-for="() in formatVote"></i></span>
-            <span v-else>No vote</span>
-            <span>{{ lang }}</span>
+            <p>{{ overview }}</p>
+            <div class="align">
+                <span v-if="formatVote"><i class="fa-solid fa-star" v-for="() in formatVote"></i></span>
+                <span v-else>No vote</span>
+                <span class="flag"><img :src="flagUrl" alt=""></span>
+            </div>
         </div>
     </div>
 </template>
@@ -22,13 +25,14 @@ import { store } from '../store';
 export default {
     name: 'CardComponent',
 
-    props: ['title', 'originalTitle', 'lang', 'vote', 'img', 'tName'],
+    props: ['title', 'originalTitle', 'lang', 'vote', 'img', 'tName', 'overview'],
 
     data() {
         return {
             store,
         }
     },
+
 
     computed: {
         createImgPath() {
@@ -39,6 +43,14 @@ export default {
             let numOfStars = '';
             return numOfStars = Math.floor(this.vote / 2);
         },
+
+        flagUrl() {
+            if (this.lang !== 'en') {
+                return this.store.flag + this.lang;
+            } else {
+                return this.store.flag + 'us';
+            }
+        }
     }
 }
 </script>
@@ -102,10 +114,34 @@ export default {
     }
 
 
+    p {
+        max-height: 88px;
+        overflow: hidden;
+    }
+
+
     span {
         display: inline-block;
         margin-top: 28px;
-        margin-right: 12px;
+        margin-right: 16px;
+    }
+}
+
+
+.align {
+    display: flex;
+    align-items: center;
+}
+
+
+.flag {
+    width: 35px;
+    height: 20px;
+
+    img {
+        width: 100%;
+        height: 100%;
+        display: block;
     }
 }
 </style>
