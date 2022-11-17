@@ -1,20 +1,21 @@
 <template>
     <div class="result">
-        <div class="card" v-for="(card, index) in store.films">
-            <h2>{{ (card.title) ? card.title : card.name }}</h2>
-            <span>{{ card.original_title }}</span>
-            <span>{{ card.original_language }}</span>
-            <span>{{ card.vote_average }}</span>
-        </div>
+        <CardComponent v-for="(card, index) in store.films" :title="card.title" :originalTitle="card.original_title"
+            :lang="card.original_language" :vote="card.vote_average" :img="card.poster_path" :tName="card.name" />
     </div>
 </template>
 
 <script>
-import { store } from '../store';
+import { store } from '../store'
+import CardComponent from './CardComponent.vue'
 
 export default {
 
     name: 'SearchResult',
+
+    components: {
+        CardComponent,
+    },
 
     data() {
         return {
@@ -29,14 +30,5 @@ export default {
     padding-top: 68px;
     display: flex;
     flex-wrap: wrap;
-}
-
-.card {
-    border: 1px solid red;
-    padding: 6px;
-
-    span {
-        display: block;
-    }
 }
 </style>
