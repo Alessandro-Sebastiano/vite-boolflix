@@ -56,6 +56,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use '../assets/styles/partials/variables' as *;
+
 .card-box {
     width: calc((100% / 6) - 8px);
     aspect-ratio: 9 / 16;
@@ -116,7 +118,18 @@ export default {
 
     p {
         max-height: 88px;
-        overflow: hidden;
+        overflow-y: auto;
+        padding-right: 24px;
+
+
+        &::-webkit-scrollbar {
+            background-color: transparent;
+            width: 3px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: $ligth;
+        }
     }
 
 

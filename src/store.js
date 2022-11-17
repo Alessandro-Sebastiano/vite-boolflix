@@ -7,4 +7,5 @@ export const store = reactive({
     flag: 'https://countryflagsapi.com/png/',
     films: [],
     searchInput: '',
+    sliderList: ['Top rated', 'Film', 'TV - Series']
 })

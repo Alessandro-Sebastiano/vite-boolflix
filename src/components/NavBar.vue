@@ -41,7 +41,7 @@ export default {
     position: fixed;
     top: 0;
     z-index: 1000;
-    background-color: $background;
+    // background-color: $background;
 }
 
 
