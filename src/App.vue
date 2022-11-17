@@ -29,18 +29,17 @@ export default {
       axios.get(apiCallUrl).then((response) => {
         this.store.films = { ...response.data.results };
         console.log(this.store.films);
+        this.store.searchInput = '';
       })
     }
   },
 
-  created() {
-    // this.search()
-  }
 }
 </script>
 
 <style lang="scss" scoped>
 .container {
   width: 100%;
+  height: 100vh;
 }
 </style>

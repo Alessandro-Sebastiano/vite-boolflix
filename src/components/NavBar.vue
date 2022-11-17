@@ -23,21 +23,25 @@ export default {
         return {
             store,
         }
-    }
+    },
 
 }
 </script>
 
 <style lang="scss" scoped>
+@use '../assets/styles/partials/variables' as *;
+
 .navbar {
     width: 100%;
-    border: 1px solid red;
     padding: 4px 4%;
     height: 68px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     position: fixed;
+    top: 0;
+    z-index: 1000;
+    background-color: $background;
 }
 
 
@@ -56,13 +60,36 @@ export default {
 .controls {
     position: absolute;
     right: 4%;
+    padding: 4px;
 
     input {
-        padding: 4px 8px;
+        padding: 6px 16px;
+        border: 1px solid $ligth;
+        background-color: $dark;
+        color: $ligth-grey;
+        font-weight: 600;
+
+
+        &:focus {
+            outline: none;
+        }
     }
 
     button {
-        padding: 8px 20px;
+        padding: 10px 24px;
+        border: 0;
+        border-radius: 6px;
+        margin: 0 12px;
+        background-color: red;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 1s cubic-bezier(.215, .61, .355, 1);
+        ;
+
+
+        &:hover {
+            background-color: darkred;
+        }
     }
 }
 </style>
