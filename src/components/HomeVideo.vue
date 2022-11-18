@@ -1,7 +1,7 @@
 <template>
     <div class="main-video-box">
-        <iframe width="560" height="315" :src="srcBaseUrl + getVideoKey + urlOptions" title="YouTube video player"
-            frameborder="0"
+        <iframe v-if="getVideoKey" width="560" height="315" :src="srcBaseUrl + getVideoKey + urlOptions"
+            title="YouTube video player" frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen></iframe>
     </div>
@@ -23,20 +23,19 @@ export default {
             videoBaseUrl: 'https://api.themoviedb.org/3/movie/',
             videoKey: '',
             srcBaseUrl: 'https://www.youtube.com/embed/',
-            urlOptions: '?controls=0&autoplay=1'
+            urlOptions: '?controls=0&loop=0&autoplay=1',
         }
     },
 
 
-    methods: {
-        getMostPopular() {
-            const popularCompleteUrl = this.popularBaseUrl + this.store.apiKey + '&language=it-IT&page=1';
-            axios.get(popularCompleteUrl).then((response) => {
-                console.log(response.data.results[0].id)
-                this.randomPopular = response.data.results[0].id;
-            })
-        }
+    beforeMount() {
+        const popularCompleteUrl = this.popularBaseUrl + this.store.apiKey + '&language=it-IT&page=1';
+        axios.get(popularCompleteUrl).then((response) => {
+            // console.log(response.data.results[0].id)
+            this.randomPopular = response.data.results[0].id;
+        })
     },
+
 
 
     computed: {
@@ -50,12 +49,6 @@ export default {
             return this.videoKey;
         }
     },
-
-
-    created() {
-        this.getMostPopular()
-        console.log(this.getVideoKey)
-    }
 
 
 }

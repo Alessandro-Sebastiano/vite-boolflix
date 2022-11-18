@@ -33,10 +33,8 @@ export default {
 
 .result-box {
     width: 100%;
-    height: 100%;
     overflow: hidden;
     position: absolute;
-    padding-top: 68px;
     top: 0px;
     z-index: 999;
     background-color: $background;
@@ -47,7 +45,7 @@ export default {
     max-height: 100%;
     display: flex;
     flex-wrap: wrap;
-    padding: 24px;
-    overflow: auto;
+    padding: 0 24px;
+    padding-top: 68px;
 }
 </style>

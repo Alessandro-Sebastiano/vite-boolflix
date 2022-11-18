@@ -1,9 +1,9 @@
 <template>
-  <div class="container">
+  <div class="container" @scroll="test()">
     <NavBar @call="search()" />
     <SearchResult v-if="store.films.length !== 0" />
-    <HomeVideo />
-    <SliderComponent v-for="(slider, index) in store.sliderList" :sliderTitle="slider" />
+    <HomeVideo v-if="store.films.length == 0" />
+    <SliderComponent v-if="store.films.length == 0" v-for="(slider, index) in store.sliderList" :sliderTitle="slider" />
   </div>
 </template>
 
@@ -33,10 +33,19 @@ export default {
     search() {
       const apiCallUrl = this.store.baseApiUrl + 'search/multi' + this.store.apiKey + '&language=it-IT' + '&query=' + this.store.searchInput;
       axios.get(apiCallUrl).then((response) => {
-        this.store.films = { ...response.data.results };
-        console.log(this.store.films);
+        this.store.films = response.data.results;
+        // console.log(this.store.films);
         this.store.searchInput = '';
       })
+    },
+
+    test() {
+      const container = document.querySelector('.container');
+      if (container.scrollTop > 1) {
+        this.store.navCheck = true;
+      } else {
+        this.store.navCheck = false;
+      }
     }
   },
 
@@ -48,5 +57,6 @@ export default {
   width: 100%;
   height: 100%;
   overflow: auto;
+  position: relative;
 }
 </style>
