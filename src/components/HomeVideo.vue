@@ -1,6 +1,6 @@
 <template>
     <div class="main-video-box">
-        <iframe width="560" height="315" :src="srcBaseUrl + videoKey + urlOptions" title="YouTube video player"
+        <iframe width="560" height="315" :src="srcBaseUrl + getVideoKey + urlOptions" title="YouTube video player"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen></iframe>
@@ -23,7 +23,7 @@ export default {
             videoBaseUrl: 'https://api.themoviedb.org/3/movie/',
             videoKey: '',
             srcBaseUrl: 'https://www.youtube.com/embed/',
-            urlOptions: '?controls=0'
+            urlOptions: '?controls=0&autoplay=1'
         }
     },
 
@@ -47,12 +47,14 @@ export default {
                     this.videoKey = response.data.results[0].key;
                 })
             }
+            return this.videoKey;
         }
     },
 
 
     created() {
         this.getMostPopular()
+        console.log(this.getVideoKey)
     }
 
 
@@ -62,7 +64,7 @@ export default {
 <style lang="scss" scoped>
 .main-video-box {
     width: 100%;
-    height: 800px;
+    aspect-ratio: 16 / 9;
     overflow: hidden;
 
 
