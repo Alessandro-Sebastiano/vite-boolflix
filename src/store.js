@@ -6,6 +6,7 @@ export const store = reactive({
     imgUrl: 'https://image.tmdb.org/t/p/w342',
     flag: 'https://countryflagsapi.com/png/',
     films: [],
+    popularFilms: [],
     searchInput: '',
     sliderList: ['Top rated', 'Film', 'TV - Series'],
     navCheck: false,

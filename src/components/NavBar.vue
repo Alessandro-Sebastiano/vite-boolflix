@@ -116,6 +116,7 @@ export default {
         border-radius: 6px;
         margin: 0 12px;
         background-color: red;
+        color: $ligth;
         cursor: pointer;
         font-weight: 600;
         transition: all 1s cubic-bezier(.215, .61, .355, 1);

@@ -10,7 +10,7 @@
 <script>
 import { store } from './store';
 import axios from 'axios';
-import NavBar from './components/NavBar.vue'
+import NavBar from './components/NavBar.vue';
 import SearchResult from './components/SearchResult.vue';
 import HomeVideo from './components/HomeVideo.vue';
 import SliderComponent from './components/SliderComponent.vue';
@@ -46,7 +46,7 @@ export default {
       } else {
         this.store.navCheck = false;
       }
-    }
+    },
   },
 
 }

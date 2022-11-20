@@ -1,13 +1,21 @@
 <template>
     <div class="slider">
         <h2>{{ sliderTitle }}</h2>
-        <CardComponent v-for="(card, index) in topRatedList" :title="card.title" :originalTitle="card.original_title"
-            :lang="card.original_language" :vote="card.vote_average" :img="card.poster_path" :tName="card.name"
-            :overview="card.overview" />
+        <swiper :slides-per-view="6" :slidesPerGroup="6" :loop="true" :space-between="10" :navigation="true"
+            :modules="modules" @swiper="onSwiper" @slideChange="onSlideChange">
+            <swiper-slide v-for="(card, index) in topRatedList">
+                <CardComponent :title="card.title" :originalTitle="card.original_title" :lang="card.original_language"
+                    :vote="card.vote_average" :img="card.poster_path" :tName="card.name" :overview="card.overview" />
+            </swiper-slide>
+        </swiper>
     </div>
 </template>
 
 <script>
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import 'swiper/scss';
+import { Navigation } from 'swiper';
+import 'swiper/scss/navigation';
 import axios from 'axios';
 import { store } from '../store';
 import CardComponent from './CardComponent.vue';
@@ -17,9 +25,25 @@ export default {
 
     components: {
         CardComponent,
+        Swiper,
+        SwiperSlide,
     },
 
     props: ['sliderTitle'],
+
+    setup() {
+        const onSwiper = (swiper) => {
+            console.log(swiper);
+        };
+        const onSlideChange = () => {
+            console.log('slide change');
+        };
+        return {
+            onSwiper,
+            onSlideChange,
+            modules: [Navigation],
+        };
+    },
 
 
     data() {
@@ -41,7 +65,7 @@ export default {
     },
 
 
-    created() {
+    mounted() {
         this.getTopRated()
     }
 
@@ -51,12 +75,11 @@ export default {
 <style lang="scss" scoped>
 .slider {
     width: 100%;
-    display: flex;
-    align-items: center;
-    flex-wrap: nowrap;
-    overflow-x: scroll;
+    // display: flex;
+    // align-items: center;
+    // flex-wrap: nowrap;
+    // overflow-x: scroll;
     padding: 84px 0;
-    overflow-x: scroll;
     position: relative;
 
 
@@ -68,7 +91,12 @@ export default {
 }
 
 .card-box {
-    min-width: calc((100% / 6) - 8px);
-    margin: 0 4px;
+    width: 100%;
+}
+
+
+.swiper {
+    padding: 0 46px;
+
 }
 </style>

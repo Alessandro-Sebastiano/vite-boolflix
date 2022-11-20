@@ -33,6 +33,7 @@ export default {
         axios.get(popularCompleteUrl).then((response) => {
             // console.log(response.data.results[0].id)
             this.randomPopular = response.data.results[0].id;
+            this.store.popularFilms = response.data.results;
         })
     },
 

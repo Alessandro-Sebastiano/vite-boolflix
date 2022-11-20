@@ -19,7 +19,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 import { store } from '../store';
 
 export default {
@@ -110,8 +109,7 @@ export default {
     padding: 4px 18px;
 
 
-    h3,
-    h5 {
+    h3 {
         margin-bottom: 4px;
     }
 
@@ -120,6 +118,7 @@ export default {
         max-height: 88px;
         overflow-y: auto;
         padding-right: 24px;
+        margin: 12px 0;
 
 
         &::-webkit-scrollbar {
@@ -129,13 +128,13 @@ export default {
 
         &::-webkit-scrollbar-thumb {
             background-color: $ligth;
+            border-radius: 12px;
         }
     }
 
 
     span {
         display: inline-block;
-        margin-top: 28px;
         margin-right: 16px;
     }
 }
@@ -155,6 +154,15 @@ export default {
         width: 100%;
         height: 100%;
         display: block;
+    }
+}
+
+
+
+
+@media (max-width: 1224px) {
+    .card-box {
+        width: calc((100% / 4) - 8px)
     }
 }
 </style>
